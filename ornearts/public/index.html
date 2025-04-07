@@ -53,7 +53,7 @@
 
         .instagram {
             background: #E1306C;
-            background: linear-gradient(45deg, #405DE6, #833AB4, #E1306C);
+            background: linear-gradient(45deg, #405ce669, #833ab458, #e1306b6f);
         }
 
         .facebook {
@@ -61,7 +61,7 @@
         }
 
         .tiktok {
-            background: #000000;
+            background: #00000045;
         }
 
         .social-link i {
@@ -157,14 +157,18 @@
         }
 
         .success-message {
-            display: none;
-            background: #4CAF50;
+            position: fixed;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
             color: white;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 20px;
             text-align: center;
+            z-index: 1000;
         }
+
 
         .success-message.show {
             display: block;
@@ -176,6 +180,28 @@
                 padding: 25px;
             }
         }
+        
+.contenitore {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.contenuto {
+  flex: 1;
+}
+
+.grazie {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #f0f0f0;
+}
+
+.footer {
+  background-color: #dcdcdc;
+  text-align: center;
+  padding: 10px 0;
+}
   </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <meta charset="utf-8" />

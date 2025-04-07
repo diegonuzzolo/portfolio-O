@@ -90,8 +90,8 @@ export default function Carousel() {
   return (
     <div
     style={{position: 'absolute',
-      bottom: '50vh',
-      right: '30vh'
+      top: '0%',
+      right: '40%'
     }} 
     className="w-full overflow-hidden relative h-[200px] md:h-[300px]">
       <motion.div

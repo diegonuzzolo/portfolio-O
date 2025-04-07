@@ -1,47 +1,64 @@
-// Make sure to run npm install @formspree/react
-// For more help visit https://formspr.ee/react-help
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 
 function Form() {
   const [state, handleSubmit] = useForm("xwplrgba");
-  if (state.succeeded) {
-      return <p>Thanks for joining!</p>;
-  }
-  return (
-    <form className="contact-form" method="POST" style={{ position: "absolute", bottom: "8%" }} onSubmit={handleSubmit}>
-      <div className="form-group">
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-      <label htmlFor="email">
-        Email Address
-      </label>
-      <input
-        id="email"
-        type="email" 
-        name="email"
-        />
+  useEffect(() => {
+    let timer;
+    if (state.succeeded) {
+      setShowSuccessMessage(true);
+      timer = setTimeout(() => {
+        setShowSuccessMessage(false);
+        window.location.reload();
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [state.succeeded]);
+
+  return (
+    <div>
+      {showSuccessMessage && (
+        <div className="success-message">
+          Grazie per averci contattato!
         </div>
-      <ValidationError 
-        prefix="Email" 
-        field="email"
-        errors={state.errors}
-      />
-      <div className="form-group">
-      <label htmlFor="message">Il tuo messaggio</label>
-      <textarea
-        id="message"
-        name="message"
-      />
-      </div>
-      <ValidationError 
-        prefix="Message" 
-        field="message"
-        errors={state.errors}
-      />
-      <button style={{cursor: 'pointer'}} className="submit-btn" type="submit" disabled={state.submitting}>
-        Invia
-      </button>
-    </form>
+      )}
+      {!state.succeeded && (
+        <form style={{position: 'relative', top: '140vh'}} onSubmit={handleSubmit} className="contact-form">
+          <div className="form-group">
+            <label htmlFor="email">Indirizzo Email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+            />
+            <ValidationError
+              prefix="Email"
+              field="email"
+              errors={state.errors}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="message">Il tuo messaggio</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+            />
+            <ValidationError
+              prefix="Message"
+              field="message"
+              errors={state.errors}
+            />
+          </div>
+          <button type="submit" disabled={state.submitting} className="submit-btn">
+            Invia
+          </button>
+        </form>
+      )}
+    </div>
   );
 }
 

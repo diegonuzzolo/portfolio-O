@@ -9,7 +9,7 @@ const ProfilePhoto = ()=>{
         position: 'absolute',
         width: '524px',
         height: '524px',
-        left: '796px',
+        right: '0px',
         top: '94px',
         backgroundColor: 'transparent'
 

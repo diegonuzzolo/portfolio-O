@@ -59,6 +59,7 @@ const handleScrollToFooter = () => {
     
     <div
       style={{
+        bottom: isMobile ? '98%' : '100%',
         left: isMobile ? '10%' : '70%',
         width: "292px",
         height: "56px",
